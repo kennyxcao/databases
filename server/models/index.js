@@ -10,7 +10,7 @@ module.exports = {
       });
     }, 
     post: function (data, cb) { // a function which can be used to insert a message into the database
-      module.exports.users.post(data, function(error, userId) {
+      module.exports.users.post(data, function(error, userId) { // checks if username exists and get its user_id
         if (!error) {
           var newRow = {
             'message': data.text,
@@ -21,6 +21,8 @@ module.exports = {
             if (error) { console.log(error); }
             cb(error, results);
           });
+        } else {
+          cb(error, null);
         }
       });
     } 
@@ -39,13 +41,13 @@ module.exports = {
       var queryUsername = 'SELECT * FROM users WHERE name = \'' + data.username + '\'';
       db.query(queryUsername, function(error, results, fields) {
         if (error) { console.log(error); }
-        if (results.length === 0) {
+        if (results.length > 0) {
+          cb(error, results[0].id);
+        } else {
           db.query('INSERT INTO users SET ?', {name: data.username}, function(error, results, fields) {
             if (error) { console.log(error); }
             cb(error, results.insertId);
-          });
-        } else {
-          cb(error, results[0].id);
+          });          
         }
       });
     }

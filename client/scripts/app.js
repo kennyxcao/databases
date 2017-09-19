@@ -62,7 +62,7 @@ var app = {
     $.ajax({
       url: app.server,
       type: 'GET',
-      //data: { order: '-createdAt' },
+      data: { order: '-createdAt' },
       contentType: 'application/json',
       success: function(data) {
         console.log(data);
@@ -234,7 +234,7 @@ var app = {
 
   startSpinner: function() {
     $('.spinner img').show();
-    $('form input[type=submit]').attr('disabled', null);
+    $('form input[type=submit]').attr('disabled', 'true');
   },
 
   stopSpinner: function() {
