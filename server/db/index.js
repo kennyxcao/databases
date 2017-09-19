@@ -17,7 +17,7 @@ var Sequelize = require('sequelize');
 // module.exports = dbConnection;
 
 
-// Sequelize Working Solution
+// Sequelize Working Solution 
 var db = new Sequelize('chat', 'root', 'plantlife');
 /* TODO this constructor takes the database name, username, then password. */
 

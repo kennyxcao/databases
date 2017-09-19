@@ -7,7 +7,6 @@ module.exports = {
     get: function (cb) { // a function which produces all the messages
       db.Message.findAll({include: [{model: db.User, required: true, attributes: ['username']}]})
         .then((messages) => {
-          console.log(messages);
           messages = messages.map(message => {
             return Object.assign({},
               {
@@ -46,7 +45,6 @@ module.exports = {
     get: function (cb) {
       db.User.findAll()
         .then((users) => {
-          console.log(users);
           cb(null, users);
         })
         .catch((error) => {
