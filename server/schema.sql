@@ -24,9 +24,9 @@ CREATE TABLE messages (
   id INTEGER NOT NULL AUTO_INCREMENT,
   message VARCHAR(300) NOT NULL,
   roomname VARCHAR(50) NOT NULL,
-  id_user INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (id_user) REFERENCES users(id)
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 /*  Execute this file from the command line by typing:
