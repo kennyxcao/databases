@@ -1,7 +1,7 @@
 var db = require('../db');
 var Sequelize = require('sequelize');
 
-// Sequelize working solution
+//Sequelize working solution
 module.exports = {
   messages: {
     get: function (cb) { // a function which produces all the messages
@@ -31,7 +31,7 @@ module.exports = {
         var newRow = {
           'text': data.text,
           'roomname': data.roomname,
-          'user_id': userId
+          'userId': userId
         };        
         db.Message.create(newRow)
           .then(() => cb(null, null))
@@ -57,6 +57,7 @@ module.exports = {
           return db.User.findOrCreate({where: {username: data.username}});
         })
         .spread((user, created) => {
+          console.log(user);
           cb(null, user);
         })
         .catch((error) => {
@@ -71,7 +72,7 @@ module.exports = {
 // module.exports = {
 //   messages: {
 //     get: function (cb) { // a function which produces all the messages
-//       var queryAllMessages = 'SELECT messages.id, messages.message AS text, messages.roomname, users.name AS "username" FROM messages, users WHERE messages.user_id = users.id';
+      // var queryAllMessages = 'SELECT messages.id, messages.message AS text, messages.roomname, users.name AS "username" FROM messages, users WHERE messages.user_id = users.id';
 //       db.query(queryAllMessages, function(error, messages, fields) {
 //         if (error) { console.log(error); }
 //         cb(error, messages);
